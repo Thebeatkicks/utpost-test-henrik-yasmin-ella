@@ -1,11 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import type { TourDetail } from '@utpost/shared'
 import { get } from '../api'
 
 const route = useRoute()
-const tour = ref(null)
-const error = ref(null)
+const tour = ref<TourDetail | null>(null)
+const error = ref<string | null>(null)
 
 onMounted(async () => {
   try {
