@@ -14,7 +14,7 @@ const load = async () => {
   error.value = null
   try {
     guides.value = await get<Guide[]>('/guides')
-  } catch (err : unknown) {
+  } catch (err: unknown) {
     error.value = err instanceof Error ? err.message : 'Kunde inte hämta guider'
   } finally {
     loading.value = false
@@ -30,8 +30,6 @@ const visible = computed(() => {
     (g) => g.title.toLowerCase().includes(q) || g.region.toLowerCase().includes(q),
   )
 })
-
-
 </script>
 
 <template>

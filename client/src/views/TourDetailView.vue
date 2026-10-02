@@ -13,16 +13,14 @@ onMounted(async () => {
   try {
     tour.value = await get(`/tours/${route.params.id}`)
   } catch (err: unknown) {
-  error.value = err instanceof Error ? err.message : 'Kunde inte hämta turen'
-}
+    error.value = err instanceof Error ? err.message : 'Kunde inte hämta turen'
   }
-)
+})
 
 // Porterat rakt av från TourDetail.jsx – samma uträkning, samma resultat.
-const climb = computed(() => tour.value ? elevationGain(tour.value.logs) : 0
-)
+const climb = computed(() => (tour.value ? elevationGain(tour.value.logs) : 0))
 
-const time = (iso : string) => new Date(iso).toLocaleTimeString('sv-SE')
+const time = (iso: string) => new Date(iso).toLocaleTimeString('sv-SE')
 </script>
 
 <template>

@@ -3,8 +3,14 @@ import type { TourLog } from '@utpost/shared'
 import { elevationGain } from './tours'
 
 const log = (elevation_m: number | null, id = 0): TourLog => ({
-  id, tour_id: 1, recorded_at: '2026-09-01T08:00:00.000Z', lat: 67.9, lon: 18.5,
-  elevation_m, heart_rate: null, note: null,
+  id,
+  tour_id: 1,
+  recorded_at: '2026-09-01T08:00:00.000Z',
+  lat: 67.9,
+  lon: 18.5,
+  elevation_m,
+  heart_rate: null,
+  note: null,
 })
 
 describe('elevationGain', () => {
