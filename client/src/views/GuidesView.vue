@@ -14,8 +14,8 @@ const load = async () => {
   error.value = null
   try {
     guides.value = await get<Guide[]>('/guides')
-  } catch (err) {
-    error.value = (err as Error).message
+  } catch (err : any) {
+    error.value = err.message
   } finally {
     loading.value = false
   }
