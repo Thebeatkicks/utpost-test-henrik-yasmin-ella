@@ -14,8 +14,8 @@ const load = async () => {
   error.value = null
   try {
     guides.value = await get<Guide[]>('/guides')
-  } catch (err : any) {
-    error.value = err.message
+  } catch (err : unknown) {
+    error.value = err instanceof Error ? err.message : 'Kunde inte hämta guider'
   } finally {
     loading.value = false
   }

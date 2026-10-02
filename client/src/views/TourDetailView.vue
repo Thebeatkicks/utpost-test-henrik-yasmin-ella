@@ -12,10 +12,11 @@ const error = ref<string | null>(null)
 onMounted(async () => {
   try {
     tour.value = await get(`/tours/${route.params.id}`)
-  } catch (err : any) {
-    error.value = err.message
+  } catch (err: unknown) {
+  error.value = err instanceof Error ? err.message : 'Kunde inte hämta turen'
+}
   }
-})
+)
 
 // Porterat rakt av från TourDetail.jsx – samma uträkning, samma resultat.
 const climb = computed(() => tour.value ? elevationGain(tour.value.logs) : 0
