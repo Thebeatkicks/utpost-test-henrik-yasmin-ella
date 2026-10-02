@@ -14,8 +14,8 @@ const load = async () => {
   error.value = null
   try {
     guides.value = await get<Guide[]>('/guides')
-  } catch (err) {
-    error.value = (err as Error).message
+  } catch (err: unknown) {
+    error.value = err instanceof Error ? err.message : 'Kunde inte hämta guider'
   } finally {
     loading.value = false
   }
@@ -37,7 +37,8 @@ const visible = computed(() => {
     <h1>Guider</h1>
 
     <div class="searchrow">
-      <input v-model="query" placeholder="Sök på namn eller landskap" />
+      <label for="guide-search">Sök</label>
+      <input id="guide-search" v-model="query" type="search" placeholder="Namn eller landskap" />
       <span class="muted">{{ visible.length }} av {{ guides.length }}</span>
     </div>
 
